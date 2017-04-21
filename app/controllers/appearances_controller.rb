@@ -1,5 +1,9 @@
 class AppearancesController < ApplicationController
 
+  def index
+    @appearances = Appearance.all
+  end
+
   def new
     @appearance = Appearance.new
   end
@@ -11,6 +15,20 @@ class AppearancesController < ApplicationController
     else
       redirect_to new_appearance_path
     end
+  end
+
+  def show
+    @appearance = Appearance.find(params[:id])
+  end
+
+  def edit
+    @appearance = Appearance.find(params[:id])
+  end
+
+  def update
+    @appearance = Appearance.find(params[:id])
+    @appearance.update(appearance_params)
+    redirect_to @appearance.episode
   end
 
   private
